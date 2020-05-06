@@ -70,5 +70,43 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+        /// <summary>
+        /// Convert each line in List (csv format) to Prize Models
+        /// </summary>
+        /// <param name="lines"></param>
+        /// <returns></returns>
+        public static List<PersonModel> ConvertToPersonModels(this List<string> lines)
+        {
+            List<PersonModel> output = new List<PersonModel>();
+
+
+            foreach (string line in lines)
+            {
+                // TODO - currently assuming , won't be in the email address
+                string[] cols = line.Split(',');
+
+                PersonModel p = new PersonModel();
+                p.Id = int.Parse(cols[0]);
+                p.FirstName = cols[1];
+                p.LastName = cols[2];
+                p.EmailAddress = cols[3];
+                p.CellphoneNumber = cols[4];
+                output.Add(p);
+            }
+
+            return output;
+        }
+
+        public static void SaveToPersonFile(this List<PersonModel> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach (PersonModel p in models)
+            {
+                lines.Add($"{ p.Id },{ p.FirstName },{ p.LastName },{ p.EmailAddress },{ p.CellphoneNumber }");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
     }
 }
