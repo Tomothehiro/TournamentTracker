@@ -110,7 +110,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers
         }
 
         /// <summary>
-        /// Convert each line in List (csv format) to Person Models
+        /// Convert each line in List (csv format) to Team Models
         /// </summary>
         /// <param name="lines"></param>
         /// <returns></returns>
