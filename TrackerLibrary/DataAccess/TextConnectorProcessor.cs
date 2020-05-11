@@ -71,6 +71,24 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
+        private static string ConvertPrizeListToString(List<PrizeModel> prizes)
+        {
+            string output = "";
+
+            if (prizes.Count == 0)
+            {
+                return "";
+            }
+            foreach (PrizeModel p in prizes)
+            {
+                output += $"{ p.Id }|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
         /// <summary>
         /// Convert each line in List (csv format) to Person Models
         /// </summary>
@@ -107,6 +125,24 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        private static string ConvertPeopleListToString(List<PersonModel> people)
+        {
+            string output = "";
+
+            if (people.Count == 0)
+            {
+                return "";
+            }
+            foreach (PersonModel p in people)
+            {
+                output += $"{ p.Id }|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
         }
 
         /// <summary>
@@ -153,17 +189,17 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
-        private static string ConvertPeopleListToString(List<PersonModel> people)
+        private static string ConvertTeamListToString(List<TeamModel> teams)
         {
             string output = "";
 
-            if (people.Count == 0)
+            if (teams.Count == 0)
             {
                 return "";
             }
-            foreach (PersonModel p in people)
+            foreach (TeamModel t in teams)
             {
-                output += $"{ p.Id }|";
+                output += $"{ t.Id }|";
             }
 
             output = output.Substring(0, output.Length - 1);
@@ -229,42 +265,6 @@ namespace TrackerLibrary.DataAccess.TextHelpers
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
-        }
-
-        private static string ConvertTeamListToString(List<TeamModel> teams)
-        {
-            string output = "";
-
-            if (teams.Count == 0)
-            {
-                return "";
-            }
-            foreach (TeamModel t in teams)
-            {
-                output += $"{ t.Id }|";
-            }
-
-            output = output.Substring(0, output.Length - 1);
-
-            return output;
-        }
-
-        private static string ConvertPrizeListToString(List<PrizeModel> prizes)
-        {
-            string output = "";
-
-            if (prizes.Count == 0)
-            {
-                return "";
-            }
-            foreach (PrizeModel p in prizes)
-            {
-                output += $"{ p.Id }|";
-            }
-
-            output = output.Substring(0, output.Length - 1);
-
-            return output;
         }
 
         private static string ConvertRoundListToString(List<List<MatchupModel>> rounds)
